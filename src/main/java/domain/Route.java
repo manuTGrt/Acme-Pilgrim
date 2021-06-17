@@ -1,12 +1,19 @@
 
 package domain;
 
+import java.util.Collection;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 @Entity
+@Access(AccessType.PROPERTY)
 public class Route extends DomainEntity {
 
 	private String	name;
@@ -64,4 +71,33 @@ public class Route extends DomainEntity {
 		this.mediaEvalDificultad = mediaEvalDificultad;
 	}
 
+
+	//Relaciones
+
+	/****** Register-Route ******/
+
+	Collection<Register> registers;
+
+
+	@NotNull
+	@OneToMany(mappedBy = "route")
+	public Collection<Register> getRegisters() {
+		return this.registers;
+	}
+
+	public void setRegister(final Collection<Register> registers) {
+		this.registers = registers;
+	}
+
+	public void addRegister(final Register register) {
+		this.registers.add(register);
+		register.setRoute(this);
+	}
+
+	public void removeRegister(final Register register) {
+		this.registers.remove(register);
+		register.setRoute(null);
+	}
+
+	/****** Route-Stage ******/
 }

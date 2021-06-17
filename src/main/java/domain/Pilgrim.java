@@ -4,17 +4,19 @@ package domain;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Access(AccessType.PROPERTY)
 public class Pilgrim extends Actor {
 
-	private Date	birthDates;
-	private String	nationality;
-	//private CreditCard	creditCard;
-	private String	creditCard;
+	private Date		birthDates;
+	private String		nationality;
+	private CreditCard	creditCard;
 
 
 	public Pilgrim() {
@@ -38,16 +40,19 @@ public class Pilgrim extends Actor {
 		this.nationality = nationality;
 	}
 
-	public String getCreditCard() {
+	public CreditCard getCreditCard() {
 		return this.creditCard;
 	}
 
-	public void setCreditCard(final String creditCard) {
+	public void setCreditCard(final CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}
 
 
 	//Relaciones
+
+	/****** Pilgrim-Register ******/
+
 	Collection<Register> registers;
 
 

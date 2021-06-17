@@ -3,10 +3,16 @@ package domain;
 
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 @Entity
+@Access(AccessType.PROPERTY)
 public class StageInstance extends DomainEntity {
 
 	private Date	start;
@@ -43,6 +49,41 @@ public class StageInstance extends DomainEntity {
 
 	public void setEvaluation(final String evaluation) {
 		this.evaluation = evaluation;
+	}
+
+
+	//Relaciones
+
+	/****** Stage-StageInstance ******/
+
+	private Stage stage;
+
+
+	@Valid
+	@ManyToOne(optional = true)
+	public Stage getStage() {
+		return this.stage;
+	}
+
+	public void setStage(final Stage stage) {
+		this.stage = stage;
+	}
+
+
+	/****** StageInstance-Register ******/
+
+	private Register register;
+
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	public Register getRegister() {
+		return this.register;
+	}
+
+	public void setRegister(final Register register) {
+		this.register = register;
 	}
 
 }

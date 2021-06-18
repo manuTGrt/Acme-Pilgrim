@@ -2,10 +2,13 @@
 package domain;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -25,6 +28,8 @@ public class Route extends DomainEntity {
 
 	public Route() {
 		super();
+		this.registers = new HashSet<Register>();
+		this.stages = new HashSet<Stage>();
 	}
 
 	@NotBlank
@@ -99,5 +104,30 @@ public class Route extends DomainEntity {
 		register.setRoute(null);
 	}
 
+
 	/****** Route-Stage ******/
+
+	Collection<Stage> stages;
+
+
+	@ManyToMany(cascade = {
+		CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+	})
+	public Collection<Stage> getStages() {
+		return this.stages;
+	}
+
+	public void setStage(final Collection<Stage> stages) {
+		this.stages = stages;
+	}
+
+	public void addStage(final Stage stage) {
+		this.stages.add(stage);
+		stage.setRoute(this);
+	}
+
+	public void removeStage(final Stage stage) {
+		this.stages.remove(stage);
+		stage.setRoute(null);
+	}
 }

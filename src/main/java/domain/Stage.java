@@ -5,8 +5,11 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -109,6 +112,21 @@ public class Stage extends DomainEntity {
 		stageInstance.setStage(null);
 	}
 
-	/****** Route-Stage ******/
 
+	/****** Route-Stage ******/
+	private Collection<Route> routes;
+
+
+	@NotNull
+	@Valid
+	@ManyToMany(cascade = {
+		CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+	})
+	public Collection<Route> getRoute() {
+		return this.routes;
+	}
+
+	public void setRoute(final Route route) {
+		this.routes.add(route);
+	}
 }

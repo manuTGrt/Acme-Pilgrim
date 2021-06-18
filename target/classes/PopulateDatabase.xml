@@ -58,5 +58,303 @@
 	</bean>
 	
 	<!-- Other domain beans come here -->	
+	<!-- Administrators -->
 	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Administrator 1" />
+		<property name="surname" value="Apellido Admin 1"/>
+		<property name="email" value="adminitrator1@mail.com" />
+		<property name="contactPhone" value="Phone-1" />
+		<property name="url" value="url1.com" />
+		<property name="userAccount" ref="userAccount1" />		
+	</bean>
+		
+	<!-- Pilgrims -->
+	
+	<bean id="pilgrim1" class="domain.Pilgrim">
+		<property name="name" value="Pilgrim 1" />
+		<property name="surname" value="Apellido Pilgrim 1"/>
+		<property name="email" value="Pilgrim1@mail.com" />
+		<property name="contactPhone" value="Phone-1" />
+		<property name="url" value="pilgrim1.com" />
+		<property name="userAccount" ref="userAccount2" />
+		<property name="birthDates" value="02/01/2012"/>
+		<property name="nationality" value="Española"/>
+		<property name="creditCard" value="creditCard1"/>
+		<property name="registers">
+			<list>
+				<ref bean="register1" />
+				<ref bean="register2" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Credit Cards -->
+	
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="Pilgrim 1"/>
+		<property name="brandName" value="Santander"/>
+		<property name="number" value="48574837615734849584"/>
+		<property name="expirationMonth" value="7"/>
+		<property name="expirationYear" value="23"/>
+		<property name="cvv" value="345"/>
+	</bean>
+	
+	<!-- Registers -->
+	
+	<bean id="register1" class="domain.Register">
+		<property name="date" value="02/01/2019 13:30"/>
+		<property name="pilgrim" ref="pilgrim1"/>
+		<property name="route" ref="route1"/>
+		<property name="stageInstances">
+			<list>
+				<ref bean="stageInstance111"/>
+				<ref bean="stageInstance112"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="register2" class="domain.Register">
+		<property name="date" value="02/01/2020 14:25"/>
+		<property name="pilgrim" ref="pilgrim1"/>
+		<property name="route" ref="route2"/>
+		<property name="stageInstances">
+			<list>
+				<ref bean="stageInstance121"/>
+				<ref bean="stageInstance122"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Routes -->
+	
+	<bean id="route1" class="domain.Route">
+		<property name="name" value="Rio Verde"/>
+		<property name="description" value="Una ruta muy bonita"/>
+		<property name="visible" value="true"/>
+		<property name="mediaEvalDuracion" value="8"/>
+		<property name="mediaEvalDificultad" value="7"/>
+		<property name="registers">
+			<list>
+				<ref bean="register1" />
+			</list>
+		</property>
+		<property name="stages">
+			<list>
+				<ref bean="stage11" />
+				<ref bean="stage12" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="route2" class="domain.Route">
+		<property name="name" value="Cumbres mayores"/>
+		<property name="description" value="Una ruta muy física"/>
+		<property name="visible" value="true"/>
+		<property name="mediaEvalDuracion" value="6"/>
+		<property name="mediaEvalDificultad" value="5"/>
+		<property name="registers">
+			<list>
+				<ref bean="register2" />
+			</list>
+		</property>
+		<property name="stages">
+			<list>
+				<ref bean="stage21" />
+				<ref bean="stage22" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Stages -->
+	
+	<bean id="stage11" class="domain.Stage">
+		<property name="name" value="nombre11"/>
+		<property name="description" value="11"/>
+		<property name="length" value="4000"/>
+		<property name="dificultyLevel" value="8"/>
+		<property name="origin" ref="location11"/>
+		<property name="destination" ref="location12"/>
+		<property name="routes">
+			<list>
+				<ref bean="route1"/>
+			</list>
+		</property>
+		<property name="stageInstances">
+			<list>
+				<ref bean="stageInstance111"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="stage12" class="domain.Stage">
+		<property name="name" value="nombre12"/>
+		<property name="description" value="12"/>
+		<property name="length" value="3000"/>
+		<property name="dificultyLevel" value="9"/>
+		<property name="origin" ref="location12"/>
+		<property name="destination" ref="location13"/>
+		<property name="routes">
+			<list>
+				<ref bean="route1"/>
+			</list>
+		</property>
+		<property name="stageInstances">
+			<list>
+				<ref bean="stageInstance112"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="stage21" class="domain.Stage">
+		<property name="name" value="nombre21"/>
+		<property name="description" value="21"/>
+		<property name="length" value="3500"/>
+		<property name="dificultyLevel" value="7"/>
+		<property name="origin" ref="location21"/>
+		<property name="destination" ref="location22"/>
+		<property name="routes">
+			<list>
+				<ref bean="route2"/>
+			</list>
+		</property>
+		<property name="stageInstances">
+			<list>
+				<ref bean="stageInstance121"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="stage22" class="domain.Stage">
+		<property name="name" value="nombre22"/>
+		<property name="description" value="22"/>
+		<property name="length" value="4500"/>
+		<property name="dificultyLevel" value="7"/>
+		<property name="origin" ref="location22"/>
+		<property name="destination" ref="location23"/>
+		<property name="routes">
+			<list>
+				<ref bean="route2"/>
+			</list>
+		</property>
+		<property name="stageInstances">
+			<list>
+				<ref bean="stageInstance122"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- location -->
+	
+	<bean id="location11" class="domain.Location">
+		<property name="title" value="l11"/>
+		<property name="description" value="localicacion 11"/>
+		<property name="longitude" value="100"/>
+		<property name="latitude" value="50"/>
+		<property name="altitude"><null/></property>
+	</bean>
+	
+	<bean id="location12" class="domain.Location">
+		<property name="title" value="l12"/>
+		<property name="description" value="localicacion 12"/>
+		<property name="longitude" value="120"/>
+		<property name="latitude" value="60"/>
+		<property name="altitude" value="200"/>
+	</bean>
+	
+	<bean id="location13" class="domain.Location">
+		<property name="title" value="l13"/>
+		<property name="description" value="localicacion 13"/>
+		<property name="longitude" value="140"/>
+		<property name="latitude" value="70"/>
+		<property name="altitude" value="220"/>
+	</bean>
+	
+	<bean id="location21" class="domain.Location">
+		<property name="title" value="l21"/>
+		<property name="description" value="localicacion 21"/>
+		<property name="longitude" value="150"/>
+		<property name="latitude" value="75"/>
+		<property name="altitude" value="225"/>
+	</bean>
+	
+	<bean id="location22" class="domain.Location">
+		<property name="title" value="l22"/>
+		<property name="description" value="localicacion 22"/>
+		<property name="longitude" value="160"/>
+		<property name="latitude" value="80"/>
+		<property name="altitude" value="230"/>
+	</bean>
+	
+	<bean id="location23" class="domain.Location">
+		<property name="title" value="l23"/>
+		<property name="description" value="localicacion 23"/>
+		<property name="longitude" value="90"/>
+		<property name="latitude" value="45"/>
+		<property name="altitude" value="125"/>
+	</bean>
+	
+	<!-- StageInstances -->
+	
+	<bean id="stageInstance111" class="domain.StageInstance">
+		<property name="start" value="03/01/2019 13:30"/>
+		<property name="end" value="03/01/2019 19:30"/>
+		<property name="evaluation" ref="eval1"/>
+		<property name="stage" ref="stage11"/>
+		<property name="register" ref="register1"></property>
+	</bean>
+	
+	<bean id="stageInstance112" class="domain.StageInstance">
+		<property name="start" value="04/01/2019 13:30"/>
+		<property name="end" value="04/01/2019 19:30"/>
+		<property name="evaluation" ref="eval2"/>
+		<property name="stage" ref="stage12"/>
+		<property name="register" ref="register1"></property>
+	</bean>
+	
+	<bean id="stageInstance121" class="domain.StageInstance">
+		<property name="start" value="03/01/2020 13:30"/>
+		<property name="end" value="03/01/2020 19:30"/>
+		<property name="evaluation" ref="eval3"/>
+		<property name="stage" ref="stage21"/>
+		<property name="register" ref="register2"></property>
+	</bean>
+	
+	<bean id="stageInstance122" class="domain.StageInstance">
+		<property name="start" value="04/01/2020 13:30"/>
+		<property name="end" value="04/01/2020 19:30"/>
+		<property name="evaluation" ref="eval4"/>
+		<property name="stage" ref="stage22"/>
+		<property name="register" ref="register2"></property>
+	</bean>
+	
+	<!-- Evaluations -->
+	
+	<bean id="eval1" class="domain.Evaluation">
+		<property name="evalDuracion" value="8"/>
+		<property name="evalDificultad" value="7"/>
+		<property name="moment" value="03/01/2019 19:50"/>
+		<property name="comment" value="Me parece etapa muy bonita"/>
+	</bean>
+	
+	<bean id="eval2" class="domain.Evaluation">
+		<property name="evalDuracion" value="7"/>
+		<property name="evalDificultad" value="6"/>
+		<property name="moment" value="04/01/2019 19:50"/>
+		<property name="comment" value="Me parece etapa muy bonita"/>
+	</bean>
+	
+	<bean id="eval3" class="domain.Evaluation">
+		<property name="evalDuracion" value="7"/>
+		<property name="evalDificultad" value="6"/>
+		<property name="moment" value="03/01/2020 19:50"/>
+		<property name="comment" value="Me parece etapa muy fisica"/>
+	</bean>
+	
+	<bean id="eval4" class="domain.Evaluation">
+		<property name="evalDuracion" value="7"/>
+		<property name="evalDificultad" value="6"/>
+		<property name="moment" value="04/01/2020 19:50"/>
+		<property name="comment" value="Me parece etapa muy fisica"/>
+	</bean>
 </beans>

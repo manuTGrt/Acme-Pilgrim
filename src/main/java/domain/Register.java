@@ -10,6 +10,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.Past;
 
@@ -27,6 +29,7 @@ public class Register extends DomainEntity {
 	}
 
 	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getDate() {
 		return this.date;
 	}
@@ -81,7 +84,7 @@ public class Register extends DomainEntity {
 		return this.stageInstances;
 	}
 
-	public void setStageInstance(final Collection<StageInstance> stageInstances) {
+	public void setStageInstances(final Collection<StageInstance> stageInstances) {
 		this.stageInstances = stageInstances;
 	}
 

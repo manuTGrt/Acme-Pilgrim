@@ -7,6 +7,8 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -15,10 +17,9 @@ import javax.validation.constraints.Past;
 @Access(AccessType.PROPERTY)
 public class StageInstance extends DomainEntity {
 
-	private Date	start;
-	private Date	end;
-	//private Evaluation evaluation;
-	private String	evaluation;
+	private Date		start;
+	private Date		end;
+	private Evaluation	evaluation;
 
 
 	public StageInstance() {
@@ -26,6 +27,7 @@ public class StageInstance extends DomainEntity {
 	}
 
 	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getStart() {
 		return this.start;
 	}
@@ -35,6 +37,7 @@ public class StageInstance extends DomainEntity {
 	}
 
 	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getEnd() {
 		return this.end;
 	}
@@ -43,11 +46,11 @@ public class StageInstance extends DomainEntity {
 		this.end = end;
 	}
 
-	public String getEvaluation() {
+	public Evaluation getEvaluation() {
 		return this.evaluation;
 	}
 
-	public void setEvaluation(final String evaluation) {
+	public void setEvaluation(final Evaluation evaluation) {
 		this.evaluation = evaluation;
 	}
 

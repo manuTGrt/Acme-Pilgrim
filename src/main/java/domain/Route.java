@@ -8,7 +8,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +19,7 @@ import org.hibernate.validator.constraints.Range;
 public class Route extends DomainEntity {
 
 	private String	name;
-	private String	description;
+	//private String	description;
 	private Boolean	visible;
 	private Integer	mediaEvalDuracion;
 	private Integer	mediaEvalDificultad;
@@ -41,14 +40,16 @@ public class Route extends DomainEntity {
 		this.name = name;
 	}
 
-	@NotBlank
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(final String description) {
-		this.description = description;
-	}
+	/*
+	 * @NotBlank
+	 * public String getDescription() {
+	 * return this.description;
+	 * }
+	 *
+	 * public void setDescription(final String description) {
+	 * this.description = description;
+	 * }
+	 */
 
 	public Boolean getVisible() {
 		return this.visible;
@@ -90,7 +91,7 @@ public class Route extends DomainEntity {
 		return this.registers;
 	}
 
-	public void setRegister(final Collection<Register> registers) {
+	public void setRegisters(final Collection<Register> registers) {
 		this.registers = registers;
 	}
 
@@ -107,27 +108,30 @@ public class Route extends DomainEntity {
 
 	/****** Route-Stage ******/
 
-	Collection<Stage> stages;
+	private Collection<Stage> stages;
 
 
-	@ManyToMany(cascade = {
-		CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
-	})
+	/*
+	 * @ManyToMany(cascade = {
+	 * CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+	 * })
+	 */
+	@OneToMany(mappedBy = "routes", cascade = CascadeType.ALL)
 	public Collection<Stage> getStages() {
 		return this.stages;
 	}
 
-	public void setStage(final Collection<Stage> stages) {
+	public void setStages(final Collection<Stage> stages) {
 		this.stages = stages;
 	}
 
 	public void addStage(final Stage stage) {
 		this.stages.add(stage);
-		stage.setRoute(this);
+		stage.setRoutes(this);
 	}
 
 	public void removeStage(final Stage stage) {
 		this.stages.remove(stage);
-		stage.setRoute(null);
+		stage.setRoutes(null);
 	}
 }

@@ -9,7 +9,10 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -27,6 +30,8 @@ public class Pilgrim extends Actor {
 
 	}
 
+	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getBirthDates() {
 		return this.birthDates;
 	}
@@ -65,7 +70,13 @@ public class Pilgrim extends Actor {
 		return this.registers;
 	}
 
-	public void setRegister(final Collection<Register> registers) {
+	/*
+	 * public void setRegister(final Collection<Register> registers) {
+	 * this.registers = registers;
+	 * }
+	 */
+
+	public void setRegisters(final Collection<Register> registers) {
 		this.registers = registers;
 	}
 

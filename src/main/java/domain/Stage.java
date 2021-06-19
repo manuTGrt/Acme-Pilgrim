@@ -5,11 +5,9 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -21,11 +19,11 @@ import org.hibernate.validator.constraints.Range;
 public class Stage extends DomainEntity {
 
 	private String		name;
-	private String		description;
+	//private String		description;
 	private Integer		length;
-	private Integer		difficultyLever;
+	private Integer		difficultyLevel;
 	private Location	origin;
-	private Location	destination;
+	//private Location	destination;
 
 
 	public Stage() {
@@ -41,14 +39,16 @@ public class Stage extends DomainEntity {
 		this.name = name;
 	}
 
-	@NotBlank
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(final String description) {
-		this.description = description;
-	}
+	/*
+	 * @NotBlank
+	 * public String getDescription() {
+	 * return this.description;
+	 * }
+	 *
+	 * public void setDescription(final String description) {
+	 * this.description = description;
+	 * }
+	 */
 
 	@Min(1)
 	public Integer getLength() {
@@ -59,30 +59,43 @@ public class Stage extends DomainEntity {
 		this.length = length;
 	}
 
-	@Range(min = 0, max = 10)
-	public Integer getDifficultyLever() {
-		return this.difficultyLever;
-	}
-
-	public void setDifficultyLever(final Integer difficultyLever) {
-		this.difficultyLever = difficultyLever;
-	}
+	/*
+	 * @Range(min = 0, max = 10)
+	 * public Integer getDifficultyLevel() {
+	 * return this.difficultyLevel;
+	 * }
+	 *
+	 * public void setDifficultyLevel(final Integer difficultyLever) {
+	 * this.difficultyLevel = difficultyLever;
+	 * }
+	 */
 
 	public Location getOrigin() {
 		return this.origin;
+	}
+
+	@Range(min = 0, max = 10)
+	public Integer getDifficultyLevel() {
+		return this.difficultyLevel;
+	}
+
+	public void setDifficultyLevel(final Integer difficultyLevel) {
+		this.difficultyLevel = difficultyLevel;
 	}
 
 	public void setOrigin(final Location origin) {
 		this.origin = origin;
 	}
 
-	public Location getDestination() {
-		return this.destination;
-	}
-
-	public void setDestination(final Location destination) {
-		this.destination = destination;
-	}
+	/*
+	 * public Location getDestination() {
+	 * return this.destination;
+	 * }
+	 *
+	 * public void setDestination(final Location destination) {
+	 * this.destination = destination;
+	 * }
+	 */
 
 
 	//Relaciones
@@ -92,13 +105,12 @@ public class Stage extends DomainEntity {
 	Collection<StageInstance> stageInstances;
 
 
-	@NotNull
 	@OneToMany(mappedBy = "stage")
 	public Collection<StageInstance> getStageInstances() {
 		return this.stageInstances;
 	}
 
-	public void setStageInstance(final Collection<StageInstance> stageInstances) {
+	public void setStageInstances(final Collection<StageInstance> stageInstances) {
 		this.stageInstances = stageInstances;
 	}
 
@@ -114,19 +126,33 @@ public class Stage extends DomainEntity {
 
 
 	/****** Route-Stage ******/
-	private Collection<Route> routes;
+	//private Collection<Route> routes;
+
+	private Route routes;
 
 
 	@NotNull
-	@Valid
-	@ManyToMany(cascade = {
-		CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
-	})
-	public Collection<Route> getRoute() {
+	@ManyToOne(optional = false)
+	public Route getRoutes() {
 		return this.routes;
 	}
 
-	public void setRoute(final Route route) {
-		this.routes.add(route);
+	public void setRoutes(final Route routes) {
+		this.routes = routes;
 	}
+
+	//@NotEmpty
+	/*
+	 * @ManyToMany(cascade = {
+	 * CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+	 * })
+	 * public Collection<Route> getRoutes() {
+	 * return this.routes;
+	 * }
+	 *
+	 * public void setRoutes(final Route route) {
+	 * this.routes.add(route);
+	 * }
+	 */
+
 }

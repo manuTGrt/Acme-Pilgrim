@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Pilgrim;
+import domain.Route;
 import services.ActorService;
+import services.RouteService;
 
 @Controller
 @RequestMapping("/administrator")
@@ -28,7 +30,10 @@ public class AdministratorController extends AbstractController {
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private ActorService actorService;
+	private ActorService	actorService;
+
+	@Autowired
+	private RouteService	routeService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -51,13 +56,16 @@ public class AdministratorController extends AbstractController {
 		return result;
 	}
 
-	// Action-2 ---------------------------------------------------------------
+	// Routes ---------------------------------------------------------------
 
-	@RequestMapping("/action-2")
-	public ModelAndView action2() {
+	@RequestMapping("/list-routes")
+	public ModelAndView listroutes() {
 		ModelAndView result;
+		Collection<Route> routes;
 
-		result = new ModelAndView("administrator/action-2");
+		routes = this.routeService.findAll();
+		result = new ModelAndView("administrator/list-routes");
+		result.addObject("routes", routes);
 
 		return result;
 	}

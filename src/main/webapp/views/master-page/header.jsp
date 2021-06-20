@@ -25,7 +25,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="administrator/list-actors.do"><spring:message code="master.page.administrator.list.actors" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message code="master.page.administrator.action.2" /></a></li>					
+					<li><a href="administrator/list-routes.do"><spring:message code="master.page.administrator.list.routes" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>

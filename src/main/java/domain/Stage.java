@@ -123,7 +123,6 @@ public class Stage extends DomainEntity {
 
 
 	/****** Route-Stage ******/
-	//private Collection<Route> routes;
 
 	private Route routes;
 
@@ -138,8 +137,11 @@ public class Stage extends DomainEntity {
 		this.routes = routes;
 	}
 
-	//@NotEmpty
 	/*
+	 * private Collection<Route> routes;
+	 *
+	 * @NotEmpty
+	 * 
 	 * @ManyToMany(cascade = {
 	 * CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
 	 * })

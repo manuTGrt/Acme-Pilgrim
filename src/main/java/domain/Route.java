@@ -40,17 +40,6 @@ public class Route extends DomainEntity {
 		this.name = name;
 	}
 
-	/*
-	 * @NotBlank
-	 * public String getDescription() {
-	 * return this.description;
-	 * }
-	 *
-	 * public void setDescription(final String description) {
-	 * this.description = description;
-	 * }
-	 */
-
 	@NotBlank
 	public String getDescription() {
 		return this.description;
@@ -125,6 +114,7 @@ public class Route extends DomainEntity {
 	 * CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
 	 * })
 	 */
+
 	@OneToMany(mappedBy = "routes", cascade = CascadeType.ALL)
 	public Collection<Stage> getStages() {
 		return this.stages;

@@ -5,6 +5,9 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,7 +26,7 @@ public class Stage extends DomainEntity {
 	private Integer		length;
 	private Integer		difficultyLevel;
 	private Location	origin;
-	//private Location	destination;
+	private Location	destination;
 
 
 	public Stage() {
@@ -66,6 +69,10 @@ public class Stage extends DomainEntity {
 		this.difficultyLevel = difficultyLevel;
 	}
 
+	@AttributeOverrides({
+		@AttributeOverride(name = "altitude", column = @Column(name = "originAltitude")), @AttributeOverride(name = "title", column = @Column(name = "originTitle")), @AttributeOverride(name = "latitude", column = @Column(name = "originLatitude")),
+		@AttributeOverride(name = "longitude", column = @Column(name = "originLongitude")), @AttributeOverride(name = "descriptionLocation", column = @Column(name = "originDescription"))
+	})
 	public Location getOrigin() {
 		return this.origin;
 	}
@@ -74,15 +81,18 @@ public class Stage extends DomainEntity {
 		this.origin = origin;
 	}
 
-	/*
-	 * public Location getDestination() {
-	 * return this.destination;
-	 * }
-	 *
-	 * public void setDestination(final Location destination) {
-	 * this.destination = destination;
-	 * }
-	 */
+	@AttributeOverrides({
+		@AttributeOverride(name = "altitude", column = @Column(name = "destinationAltitude")), @AttributeOverride(name = "title", column = @Column(name = "destinationTitle")),
+		@AttributeOverride(name = "latitude", column = @Column(name = "destinationLatitude")), @AttributeOverride(name = "longitude", column = @Column(name = "destinationLongitude")),
+		@AttributeOverride(name = "descriptionLocation", column = @Column(name = "destinationDescription"))
+	})
+	public Location getDestination() {
+		return this.destination;
+	}
+
+	public void setDestination(final Location destination) {
+		this.destination = destination;
+	}
 
 
 	//Relaciones

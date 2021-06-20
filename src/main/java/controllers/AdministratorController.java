@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Actor;
+import domain.Pilgrim;
 import services.ActorService;
 
 @Controller
@@ -42,9 +42,9 @@ public class AdministratorController extends AbstractController {
 	@RequestMapping(value = "/list-actors", method = RequestMethod.GET)
 	public ModelAndView listactors() {
 		ModelAndView result;
-		Collection<Actor> actors;
+		Collection<Pilgrim> actors;
 
-		actors = this.actorService.findAll();
+		actors = this.actorService.findAllPilgrim();
 		result = new ModelAndView("administrator/list-actors");
 		result.addObject("actors", actors);
 

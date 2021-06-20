@@ -40,5 +40,11 @@
 
 	<spring:message code="actor.url" var="urlHeader" />
 	<display:column property="url" title="${urlHeader}"	sortable="false" />
+	
+	<spring:message code="actor.nationality" var="nationalityHeader" />
+	<display:column property="nationality" title="${nationalityHeader}"	sortable="false" />
+	
+	<spring:message code="actor.birthDates" var="birthDatesHeader" />
+	<display:column property="birthDates" title="${birthDatesHeader}"	sortable="false" />
 
 </display:table>

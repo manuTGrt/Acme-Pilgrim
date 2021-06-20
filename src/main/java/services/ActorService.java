@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Actor;
+import domain.Pilgrim;
 import repositories.ActorRepository;
+import repositories.PilgrimRepository;
 import security.UserAccount;
 import security.UserAccountService;
 
@@ -21,6 +23,9 @@ public class ActorService {
 
 	@Autowired
 	private ActorRepository		actorRepository;
+
+	@Autowired
+	private PilgrimRepository	pilgrimRepository;
 
 	// Supporting services ----------------------------------------------------
 
@@ -86,12 +91,12 @@ public class ActorService {
 		return result;
 	}
 
-	//	public Collection<Actor> findAllPilgrim() {
-	//		Collection<Actor> result;
-	//
-	//		result = this.actorRepository.findAllActive();
-	//		Assert.notNull(result);
-	//
-	//		return result;
-	//	}
+	public Collection<Pilgrim> findAllPilgrim() {
+		Collection<Pilgrim> result;
+
+		result = this.pilgrimRepository.findAll();
+		Assert.notNull(result);
+
+		return result;
+	}
 }

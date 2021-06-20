@@ -17,13 +17,13 @@
 <tiles-definitions>
 
 	<definition name="administrator/list-actors" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Actors" />
+		<put-attribute name="title" value="Administrator: Pilgrims" />
 		<put-attribute name="body" value="/views/administrator/list-actors.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-2" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Action 2" />
-		<put-attribute name="body" value="/views/administrator/action-2.jsp" />
+	<definition name="administrator/list-routes" extends="master.page">	
+		<put-attribute name="title" value="Administrator: Routes" />
+		<put-attribute name="body" value="/views/administrator/list-routes.jsp" />
 	</definition>
 	
 </tiles-definitions>

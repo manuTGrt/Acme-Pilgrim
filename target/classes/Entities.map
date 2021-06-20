@@ -1,13 +1,19 @@
 #./src/main/resources/Entities.map
-#Sat Jun 19 20:29:52 CEST 2021
-stage22=22
-stage21=21
-stage12=19
-stage11=18
-route2=20
-route1=17
-administrator1=15
-userAccount3=14
-userAccount2=13
-userAccount1=12
-pilgrim1=16
+#Sun Jun 20 02:09:08 CEST 2021
+stage22=28
+stageInstance112=31
+stage21=27
+stageInstance111=30
+register2=32
+register1=29
+stage12=25
+stage11=24
+route2=26
+route1=23
+administrator1=21
+userAccount3=20
+stageInstance122=34
+userAccount2=19
+stageInstance121=33
+userAccount1=18
+pilgrim1=22

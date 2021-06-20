@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.Range;
 public class Route extends DomainEntity {
 
 	private String	name;
-	//private String	description;
+	private String	description;
 	private Boolean	visible;
 	private Integer	mediaEvalDuracion;
 	private Integer	mediaEvalDificultad;
@@ -50,6 +50,15 @@ public class Route extends DomainEntity {
 	 * this.description = description;
 	 * }
 	 */
+
+	@NotBlank
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(final String description) {
+		this.description = description;
+	}
 
 	public Boolean getVisible() {
 		return this.visible;

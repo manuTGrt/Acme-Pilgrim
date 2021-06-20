@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.Range;
 public class Location {
 
 	private String	title;
-	//private String	description;
+	private String	descriptionLocation;
 	private Double	longitude;
 	private Double	latitude;
 	private Double	altitude;
@@ -29,15 +29,13 @@ public class Location {
 		this.title = title;
 	}
 
-	/*
-	 * public String getDescription() {
-	 * return this.description;
-	 * }
-	 * 
-	 * public void setDescription(final String description) {
-	 * this.description = description;
-	 * }
-	 */
+	public String getDescriptionLocation() {
+		return this.descriptionLocation;
+	}
+
+	public void setDescriptionLocation(final String descriptionLocation) {
+		this.descriptionLocation = descriptionLocation;
+	}
 
 	@Range(min = -180, max = 180)
 	public Double getLongitude() {

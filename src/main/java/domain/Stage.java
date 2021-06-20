@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.Range;
 public class Stage extends DomainEntity {
 
 	private String		name;
-	//private String		description;
+	private String		description;
 	private Integer		length;
 	private Integer		difficultyLevel;
 	private Location	origin;
@@ -39,16 +39,14 @@ public class Stage extends DomainEntity {
 		this.name = name;
 	}
 
-	/*
-	 * @NotBlank
-	 * public String getDescription() {
-	 * return this.description;
-	 * }
-	 *
-	 * public void setDescription(final String description) {
-	 * this.description = description;
-	 * }
-	 */
+	@NotBlank
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(final String description) {
+		this.description = description;
+	}
 
 	@Min(1)
 	public Integer getLength() {
@@ -59,21 +57,6 @@ public class Stage extends DomainEntity {
 		this.length = length;
 	}
 
-	/*
-	 * @Range(min = 0, max = 10)
-	 * public Integer getDifficultyLevel() {
-	 * return this.difficultyLevel;
-	 * }
-	 *
-	 * public void setDifficultyLevel(final Integer difficultyLever) {
-	 * this.difficultyLevel = difficultyLever;
-	 * }
-	 */
-
-	public Location getOrigin() {
-		return this.origin;
-	}
-
 	@Range(min = 0, max = 10)
 	public Integer getDifficultyLevel() {
 		return this.difficultyLevel;
@@ -81,6 +64,10 @@ public class Stage extends DomainEntity {
 
 	public void setDifficultyLevel(final Integer difficultyLevel) {
 		this.difficultyLevel = difficultyLevel;
+	}
+
+	public Location getOrigin() {
+		return this.origin;
 	}
 
 	public void setOrigin(final Location origin) {

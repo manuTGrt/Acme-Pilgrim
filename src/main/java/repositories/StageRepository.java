@@ -12,6 +12,6 @@ import domain.Stage;
 @Repository
 public interface StageRepository extends JpaRepository<Stage, Integer> {
 
-	@Query("select s from Stage s where s.id > ?1")
-	Collection<Stage> findByStageId(int stageId);
+	@Query("select s from Stage s where s.routes.id = ?1")
+	Collection<Stage> findByRouteId(int routeId);
 }

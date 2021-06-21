@@ -26,4 +26,9 @@
 		<put-attribute name="body" value="/views/administrator/list-routes.jsp" />
 	</definition>
 	
+	<definition name="administrator/list-stages" extends="master.page">	
+		<put-attribute name="title" value="Administrator: Stages" />
+		<put-attribute name="body" value="/views/administrator/list-stages.jsp" />
+	</definition>
+	
 </tiles-definitions>

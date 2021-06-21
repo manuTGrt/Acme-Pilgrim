@@ -41,4 +41,15 @@
 	<spring:message code="routes.visible" var="visibleHeader" />
 	<display:column property="visible" title="${visibleHeader}"	sortable="false" />
 	
+	<spring:message code="routes.id" var="idHeader" />
+	<display:column property="id" title="${idHeader}" sortable="false" />
+	
+	<display:column>
+		<a href="administrator/list-stages.do?routeId=${row.id}">
+			<spring:message	code="stage.show" />
+		</a>
+	</display:column>
+
+	
+	
 </display:table>

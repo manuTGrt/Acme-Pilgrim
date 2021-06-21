@@ -16,12 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Pilgrim;
 import domain.Route;
+import domain.Stage;
 import services.ActorService;
 import services.RouteService;
+import services.StageService;
 
 @Controller
 @RequestMapping("/administrator")
@@ -34,6 +37,9 @@ public class AdministratorController extends AbstractController {
 
 	@Autowired
 	private RouteService	routeService;
+
+	@Autowired
+	private StageService	stageService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -70,4 +76,17 @@ public class AdministratorController extends AbstractController {
 		return result;
 	}
 
+	//Stages ---------------------------------------------------------------
+	@RequestMapping(value = "/list-stages", method = RequestMethod.GET)
+	public ModelAndView liststages(@RequestParam final int routeId) {
+		ModelAndView result;
+		Collection<Stage> stages;
+
+		stages = this.stageService.findByRouteId(routeId);
+
+		result = new ModelAndView("administrator/list-stages");
+		result.addObject("stages", stages);
+
+		return result;
+	}
 }
